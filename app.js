@@ -21,7 +21,7 @@ app.post("/", function (req,res)
 
   //Batch subscription
   const data={
-    'members': [ //1 element in array only - 1 subscriber at a time //key-value pair
+    'members': [ //1 subscriber at a time //key-value pair
       {
         email_address: email,
         status: "subscribed",
@@ -38,11 +38,11 @@ app.post("/", function (req,res)
   console.log(firstName,lastName,email);
 
   //making a request
-  const url = "https://us14.api.mailchimp.com/3.0/lists/03e306a88a" //mailchimp end point - https://${dc}.api.mailchimp.com/3.0/lists/${listid}  dc=us14 listid = 03e306a88a
+  const url = "" //mailchimp end point - https://${dc}.api.mailchimp.com/3.0/lists/${listid}  dc=us1 listid = 03e306a88b
 
   const options = {
     method: "POST", //type of request we want to make
-    auth: "soumya1:1b98c332053580ff68158c7565133525-us14" //Basic HTTP Authentication - string(username):api key
+    auth: "" //Basic HTTP Authentication - string(username):api key
   }
 
   const request = https.request(url,options,function(response) //request to be sent to mailchimp server
@@ -77,11 +77,7 @@ app.post("/failure", function(req,res)
   res.redirect("/");
 });
 
-app.listen(3000, function()
+app.listen(process.env.PORT || 3000, function()
 {
   console.log("Server has started!");
 });
-//api key
-//1b98c332053580ff68158c7565133525-us14
-//audience-id
-// 03e306a88a
